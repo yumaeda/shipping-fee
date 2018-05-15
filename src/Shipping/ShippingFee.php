@@ -29,6 +29,7 @@ class ShippingFee
 
     protected $prefectures;
     protected $regional_fees;
+    protected $prefecture_key;
     protected $bottle_qty;
     protected $is_refrigerated;
     protected $price;
@@ -46,6 +47,7 @@ class ShippingFee
      */
     public function __construct($prefecture_key, $bottle_qty, $is_refrigerated, $price)
     {
+        $this->prefecture_key = $prefecture_key;
         $this->bottle_qty = $bottle_qty;
         $this->is_refrigerated = $is_refrigerated;
         $this->price = $price;
@@ -90,7 +92,7 @@ class ShippingFee
      * @param  bool $is_cool Whether to use refrigerated delivery or not
      * @return int number of boxes needed
      */
-    protected getBoxCount($bottle_qty, $is_refrigerated)
+    protected function getBoxCount($bottle_qty, $is_refrigerated)
     {
         $box_count = 0;
 
@@ -115,7 +117,7 @@ class ShippingFee
      * @access protected
      * @return int number of free boxes
      */
-    protected getFreeBoxCount()
+    protected function getFreeBoxCount()
     {
         $free_box_count = ($this->price > 0) ?
             floor($this->price / $this->free_shipping_price) :
@@ -163,7 +165,7 @@ class ShippingFee
             $additional_fee = $free_box_count * ($fee - $kanto_fee);
         }
 
-        return ($fee * $box_count) + $additional_fee;
+        return (int)(($fee * $box_count) + $additional_fee);
     }
 
     /**
@@ -174,6 +176,9 @@ class ShippingFee
      * @param  int $bottle_qty Number of bottles to ship
      * @return int Fee for refrigerated delivery
      */
-    abstract public function getRefrigeratedDeliveryFee($bottle_qty);
+    public function getRefrigeratedDeliveryFee($bottle_qty)
+    {
+        return self::REFRIGERATED_DELIVERY_COST * $this->getBoxCount($bottle_qty, true);
+    }
 }
 

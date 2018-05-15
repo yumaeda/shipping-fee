@@ -44,18 +44,5 @@ class YamatoShippingFee extends ShippingFee
             self::MAX_BOTTLE_COUNT_FOR_REFRIGERATED_DELIVERY :
             parent::getMaxBottleCount();
     }
-
-    /**
-     * Gets the fee for using refrigerated delivery for the specified
-     * number of bottles
-     *
-     * @access public
-     * @param  int $bottle_qty Number of bottles to ship
-     * @return int Fee for refrigerated delivery
-     */
-    public function getRefrigeratedDeliveryFee($bottle_qty)
-    {
-        return ShippingFee::REFRIGERATED_DELIVERY_COST * $this->getBoxCount($bottle_qty, true);
-    }
 }
 
