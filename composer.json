@@ -22,7 +22,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Yumaeda\\": "src/"
+            "Yumaeda\\": "src/",
+            "Yumaeda\\Tests\\": "tests/"
         }
     }
 }

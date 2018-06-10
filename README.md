@@ -42,7 +42,9 @@ $fee = yamato_fee->calculate();
 ```
 
 ## Testing
-Not available
+```
+$ vendor/bin/phpunit --debug
+```
 
 ## Contributing
 Please send a pull request.

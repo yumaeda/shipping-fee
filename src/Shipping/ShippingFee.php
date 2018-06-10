@@ -178,6 +178,10 @@ class ShippingFee
      */
     public function getRefrigeratedDeliveryFee($bottle_qty)
     {
+        if (!$this->is_refrigerated) {
+            return 0;
+        }
+
         return self::REFRIGERATED_DELIVERY_COST * $this->getBoxCount($bottle_qty, true);
     }
 }
