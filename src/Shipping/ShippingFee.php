@@ -40,12 +40,12 @@ class ShippingFee
      *
      * @access public
      * @param  string $prefecture_key Key for the prefecture to deliver
-     * @param  int $bottle_qty Number of bottles for shipment
      * @param  bool $is_refrigerated Whether to use refrigerated delivery or not
+     * @param  int $bottle_qty Number of bottles for shipment
      * @param  int $price The aount of purchase price
      * @return void
      */
-    public function __construct($prefecture_key, $bottle_qty, $is_refrigerated, $price)
+    public function __construct($prefecture_key, $is_refrigerated, $bottle_qty, $price)
     {
         $this->prefecture_key = $prefecture_key;
         $this->bottle_qty = $bottle_qty;
@@ -55,6 +55,32 @@ class ShippingFee
 
         $this->prefectures = new PrefectureList();
         $this->regional_fees = new RegionalFeeTable();
+    }
+
+    /**
+     * Sets purchase price
+     *
+     * @access public
+     * @param int $price Purchase price
+     * @return void
+     *
+     */
+    public function setPurchasePrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * Sets purchase price
+     *
+     * @access public
+     * @param int $bottle_qty Bottle quantity
+     * @return void
+     *
+     */
+    public function setBottleQty($bottle_qty)
+    {
+        $this->bottle_qty = $bottle_qty;
     }
 
     /**

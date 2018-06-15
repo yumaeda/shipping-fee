@@ -22,14 +22,14 @@ class YamatoShippingFee extends ShippingFee
      *
      * @access public
      * @param  string $prefecture_key Key for the prefecture to deliver
-     * @param  int $bottle_qty Number of bottles for shipment
      * @param  bool $is_refrigerated Whether to use refrigerated delivery or not
+     * @param  int $bottle_qty Number of bottles for shipment
      * @param  int $price The aount of purchase price
      * @return void
      */
-    public function __construct($prefecture_key, $bottle_qty, $is_refrigerated, $price)
+    public function __construct($prefecture_key, $is_refrigerated, $bottle_qty = 0, $price = 0)
     {
-        parent::__construct($prefecture_key, $bottle_qty, $is_refrigerated, $price);
+        parent::__construct($prefecture_key, $is_refrigerated, $bottle_qty, $price);
     }
 
     /**
