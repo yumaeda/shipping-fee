@@ -30,26 +30,51 @@ class YamatoShippingFeeTest extends TestCase
         $fee->setRegionalFee('OKINAWA', 2800);
     }
 
+    /**
+     * @access public
+     * @return void
+     * @covers YamatoShippingFee::calculate
+     */
     public function test1BtlUnder15000Yen()
     {
         $this->doTest(9000, 1, 910, 0);
     }
 
+    /**
+     * @access public
+     * @return void
+     * @covers YamatoShippingFee::calculate
+     */
     public function test9BtlUnder15000Yen()
     {
         $this->doTest(9000, 9, 910, 0);
     }
 
+    /**
+     * @access public
+     * @return void
+     * @covers YamatoShippingFee::calculate
+     */
     public function test9BtlOver15000Yen()
     {
         $this->doTest(15000, 9, 0, 0);
     }
 
+    /**
+     * @access public
+     * @return void
+     * @covers YamatoShippingFee::calculate
+     */
     public function test12BtlUnder15000Yen()
     {
         $this->doTest(9000, 12, 910, 0);
     }
 
+    /**
+     * @access public
+     * @return void
+     * @covers YamatoShippingFee::calculate
+     */
     public function test12BtlOver15000Yen()
     {
         $this->doTest(15000, 12, 0, 0);
